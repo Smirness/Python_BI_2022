@@ -3,7 +3,7 @@ Author Viktor Smirnov
 | H/W        | Topic                              | status | checked by teacher? |
 |------------|------------------------------------|--------|---------------------|
 | homework_1 | Git                                | done   | yes |
-| homework_2 | Collection                         | done   | yes | 
+| homework_2 | Collection                         | done   | no | 
 | homework_3 | Files and functions                | done   | yes | 
 | homework_4 | modules and virtual environments   | -      | no  | 
 | homework_5 | numpy                              | -      | no | 
