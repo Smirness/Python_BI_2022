@@ -1,10 +1,13 @@
 # Python_BI_2022
 Author Viktor Smirnov
-* homework_1 - Git (done)
-* homework_2 - Collection (done)
-* homework_3 - Files and functions (done)
-* homework_4 - modules and virtual environments 
-* homework_5 - numpy 
-* homework_6 - pandas and visualizations 
-* homework_7 - regular expressions (done)
-* homework_8 - functional programming (done)
+| H/W        | Topic                              | status | checked by teacher? |
+|------------|------------------------------------|--------|---------------------|
+| homework_1 | Git                                | done   | yes |
+| homework_2 | Collection                         | done   | yes | 
+| homework_3 | Files and functions                | done   | yes | 
+| homework_4 | modules and virtual environments   | -      | no  | 
+| homework_5 | numpy                              | -      | no | 
+| homework_6 | pandas and visualizations          | -      | no | 
+| homework_7 | regular expressions                | done   | no | 
+| homework_8 | functional programming             | done   | no | 
+| homework_9 | os and sys                         | -      | no | 
