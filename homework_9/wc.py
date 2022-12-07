@@ -1,49 +1,55 @@
 #!/usr/bin/env python3
 
-import sys
+import argparse
+
+parser = argparse.ArgumentParser(description="It is used to find out number of lines, word count, byte and characters "
+                                             "count in the files specified in the file arguments")
+parser.add_argument("-l", help="number of lines", action="store_true")
+parser.add_argument("-w", help="number of words", action="store_true")
+parser.add_argument("-c", help="count of bytes", action="store_true")
+parser.add_argument("file", help="File", nargs="+")
+args = parser.parse_args()
 
 
 def l(f):
     """-l number of lines"""
-    i = 0
-    for line in f:
-        i += 1
+    with open(f, 'r') as f:
+        i = 0
+        for line in f:
+            i += 1
     return i
 
 
 def w(f):
     """-w number of words"""
-    i = 0
-    for line in f:
-        i += len(line.split())
+    with open(f, 'r') as f:
+        i = 0
+        for line in f:
+            i += len(line.split())
     return i
 
 
 def c(f):
     """-c count of bytes"""
-    i = 0
-    for line in f:
-        i += bytes(line, 'utf-8')
-    return i
+    with open(f, 'rb') as f:
+        return len(f.read())
 
 
-settings = list(sys.argv[1:-1])
-file = sys.argv[-1]
+file = str(args.file[0])
 res = []
 
-with open(file, 'r') as f:
-    if not settings:
-        settings = ['-l', '-w', '-c']
+if args.l is False and args.w is False and args.c is False:
+    args.l = True
+    args.w = True
+    args.c = True
 
-    if '-l' in settings:
-        res.append(l(f))
+if args.l is True:
+    res.append(l(file))
 
-    if '-w' in settings:
-        res.append(w(f))
+if args.w is True:
+    res.append(w(file))
 
-    if '-c' in settings:
-        res.append(c(f))
+if args.c is True:
+    res.append(c(file))
 
-print(res, file)
-
-input()
+print(*res, file)
