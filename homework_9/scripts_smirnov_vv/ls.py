@@ -2,8 +2,9 @@
 
 import argparse
 import os
+import sys
 
-parser = argparse.ArgumentParser(description="List information about the FILEs (the current directory by default")
+parser = argparse.ArgumentParser(description="List information about the FILEs (the current directory by default)")
 parser.add_argument("-a", '--all', help="do not ignore entries starting with", action="store_true")
 parser.add_argument("file", help="File or path", default='./', nargs='?')
 args = parser.parse_args()
@@ -18,4 +19,6 @@ if args.all is False:
         if not d.startswith('.'):
             res.append(d)
 
-print(*res)
+print(*res, sep='  ')
+# for i in res:
+#     sys.stdout.write(i)

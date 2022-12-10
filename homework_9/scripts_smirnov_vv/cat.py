@@ -15,7 +15,7 @@ type_file = file.split('.')[-1]
 abspath_to_f = os.path.abspath(file)
 abspath = os.path.dirname(abspath_to_f)
 
-print(file)
+# print(file)
 
 # print all files. If command 'cat.py *'
 if '*' in file and '*' in type_file:

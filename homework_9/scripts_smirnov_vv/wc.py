@@ -2,8 +2,7 @@
 
 import argparse
 
-parser = argparse.ArgumentParser(description="It is used to find out number of lines, word count, byte and characters "
-                                             "count in the files specified in the file arguments")
+parser = argparse.ArgumentParser(description="It is used to find out number of lines, word count, byte specified in the files")
 parser.add_argument("-l", help="number of lines", action="store_true")
 parser.add_argument("-w", help="number of words", action="store_true")
 parser.add_argument("-c", help="count of bytes", action="store_true")
