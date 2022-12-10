@@ -10,4 +10,4 @@ Author Viktor Smirnov
 | homework_6 | pandas and visualizations          | -      | no | 
 | homework_7 | regular expressions                | done   | no | 
 | homework_8 | functional programming             | done   | no | 
-| homework_9 | os and sys                         | -      | no | 
+| homework_9 | os and sys                         | done      | no | 
