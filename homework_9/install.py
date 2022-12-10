@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+### Don't run. It's code in proccessing 
+
 import os
 import shutil
 
