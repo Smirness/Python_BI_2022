@@ -2,12 +2,14 @@
 Author Viktor Smirnov
 | H/W        | Topic                              | status | checked by teacher? |
 |------------|------------------------------------|--------|---------------------|
-| homework_1 | Git                                | done   | yes |
-| homework_2 | Collection                         | done   | no | 
-| homework_3 | Files and functions                | done   | yes | 
-| homework_4 | modules and virtual environments   | -      | no  | 
-| homework_5 | numpy                              | -      | no | 
-| homework_6 | pandas and visualizations          | -      | no | 
+| homework_0 | Git                                | done   | yes |
+| homework_1 | Collection                         | done   | no | 
+| homework_2 | Files and functions                | done   | yes | 
+| homework_3 | modules and virtual environments   | -      | no  | 
+| homework_4 | numpy                              | -      | no | 
+| homework_5 | pandas and visualizations          | -      | no |
+| homework_6 | -           | -      | - |
 | homework_7 | regular expressions                | done   | no | 
 | homework_8 | functional programming             | done   | yes | 
 | homework_9 | os and sys                         | done      | no | 
+
