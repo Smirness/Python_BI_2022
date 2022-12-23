@@ -15,7 +15,6 @@ class FASTQFile:
 
 class Read:
     """describe reads of the fastq file"""
-
     def __init__(self, read_id, read_sequence, comment, quality):
         self.read_id = read_id.strip()
         self.read_sequence = read_sequence.strip()
@@ -45,6 +44,7 @@ class Read:
 def read_fastq(fastq_file_name):
     """It reads fastq file and returns an object of type FASTQFile"""
     with open(fastq_file_name, 'r') as file:
+        i = 0
         fastq_records = list()
         while True:
             try:
@@ -55,7 +55,9 @@ def read_fastq(fastq_file_name):
                 comment = file.readline()
                 quality = file.readline()
 
-                fastq_records.append(Read(read_id, read_sequence, comment, quality))
+                i+=1
+                globals()['fastq_read_' + str(i)] = Read(read_id, read_sequence, comment, quality)
+                fastq_records.append(globals()['fastq_read_' + str(i)])
             except:
                 break
 
@@ -70,7 +72,8 @@ def read_fastq(fastq_file_name):
 FASTQFile_1 = read_fastq('C:/Users/smirn/projects/Python_BI_2022/homework_10/read_fastq.py')
 
 print(FASTQFile_1.fastq_records[0])
-print(FASTQFile_1.fastq_records[0].read_sequence)
+print(fastq_read_1)
+print(fastq_read_1.quality)
 #
 # line_1 = '@SRX079804:1:SRR292678:1:1101:21885:21885 1:N:0:1 BH:ok'
 # line_2 = 'ACAGCAACATAAACATGATGGGATGGCGTAAGCCCCCGAGATATCAGTTTACCCAGGATAAGAGATTAAATTATGAGCAACATTATTAA'
