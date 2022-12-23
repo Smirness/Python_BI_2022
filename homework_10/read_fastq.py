@@ -1,14 +1,22 @@
 class FASTQFile:
-    """stores information about the contents of the fastq file"""
-
-    def __init__(self, file, fastq_records):
+    """Stores information about the contents of the fastq file"""
+    def __init__(self, file, name, fastq_records):
         self.file = file
+        self.name = name
         self.fastq_records = fastq_records
 
-    # def sort_reads(self):
-    #
-    #
-    # def write_to_file(self):
+    def sort_reads(self):
+        """Sort reeds in fastq_records attribute by average quality, by reed length, GC-composition, reed ID"""
+        self.fastq_records.sort(key=lambda read: (read.mean_quality(), len(read), read.gc(), read.read_id))
+
+    def write_to_file(self):
+        """Save all reads in the FASTQ file from the list fastq_records"""
+        with open(self.file+'/'+self.name+'_new.fastq', 'w') as file:
+            for read in self.fastq_records:
+                file.write('@' + read.read_id + '\n')
+                file.write(read.read_sequence + '\n')
+                file.write(read.comment + '\n')
+                file.write(read.quality + '\n')
 
     pass
 
@@ -16,16 +24,20 @@ class FASTQFile:
 class Read:
     """describe reads of the fastq file"""
     def __init__(self, read_id, read_sequence, comment, quality):
-        self.read_id = read_id.strip()
+        self.read_id = read_id.strip("@\n")
         self.read_sequence = read_sequence.strip()
         self.comment = comment.strip()
         self.quality = quality.strip()
 
     def gc(self):
-        gc = (self.read_sequence.count("C") + self.read_sequence.count("G")) / len(self.read_sequence) * 100
-        return round(gc, 2)
+        """show GC content"""
+        gc = (self.read_sequence.count("C") + self.read_sequence.count("G")) \
+             / len(self.read_sequence) * 100
+
+        return gc
 
     def mean_quality(self):
+        """show mean quality"""
         total_quality = 0
 
         for sym in self.quality:
@@ -33,7 +45,7 @@ class Read:
 
         mean_quality = total_quality / len(self.read_sequence)
 
-        return round(mean_quality, 2)
+        return mean_quality
 
     def __len__(self):
         return len(self.read_sequence)
@@ -57,35 +69,22 @@ def read_fastq(fastq_file_name):
 
                 i+=1
                 globals()['fastq_read_' + str(i)] = Read(read_id, read_sequence, comment, quality)
-                fastq_records.append(globals()['fastq_read_' + str(i)])
+                fastq_records.append(Read(read_id, read_sequence, comment, quality))
+
             except:
                 break
 
-    for i in range(len(fastq_records)):
-        globals()['fastq_read_' + str(i + 1)] = fastq_records[i]
+    path = fastq_file_name.split('/')
+    name = path[-1].removesuffix('.fastq')
+    file = '/'.join(path[:-1])
 
-    file = fastq_file_name.split('/')
-    file = '/'.join(file[:-1])
-    return FASTQFile(file, fastq_records)
+    return FASTQFile(file, name, fastq_records)
 
-
-FASTQFile_1 = read_fastq('C:/Users/smirn/projects/Python_BI_2022/homework_10/read_fastq.py')
-
-print(FASTQFile_1.fastq_records[0])
-print(fastq_read_1)
-print(fastq_read_1.quality)
+# #For testing
+# FASTQFile_1 = read_fastq('C:/Users/smirn/projects/Python_BI_2022/homework_10/test.fastq')
+# FASTQFile_1.sort_reads()
+# FASTQFile_1.write_to_file()
 #
-# line_1 = '@SRX079804:1:SRR292678:1:1101:21885:21885 1:N:0:1 BH:ok'
-# line_2 = 'ACAGCAACATAAACATGATGGGATGGCGTAAGCCCCCGAGATATCAGTTTACCCAGGATAAGAGATTAAATTATGAGCAACATTATTAA'
-# line_3 = '+SRX079804:1:SRR292678:1:1101:21885:21885 1:N:0:1 BH:ok'
-# line_4 = 'FGGGFGGGFGGGFGDFGCEBB@CCDFDDFFFFBFFGFGEFDFFFF;D@DD>C@DDGGGDFGDGG?GFGFEGFGGEF@FDGGGFGFBGGD'
-#
-# Read(line_1, line_2, line_3, line_4)
-#
-# print(Read(line_1, line_2, line_3, line_4))
-# print(fastq_read_1.read_sequence)
-# print(len(fastq_read_1.read_sequence))
+# print(len(fastq_read_1))
 # print(fastq_read_1.gc())
 # print(fastq_read_1.mean_quality())
-
-
